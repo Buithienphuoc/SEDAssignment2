@@ -24,8 +24,8 @@ Customer CustomerDAO::findCustomerById(string id) {
     } else {
         for (int customerPosition = 1; customerPosition <= customerList.size(); customerPosition++) {
             Customer targetCustomer = customerList.getIndex(customerPosition);
-            string targetString = toLowerCase(targetCustomer.getId());
-            if (targetString == toLowerCase(id)) {
+            string targetString = toUpperCase(targetCustomer.getId());
+            if (targetString == id) {
                 return targetCustomer;
             }
         }
@@ -86,16 +86,18 @@ LinkedList<Customer> CustomerDAO::findCustomersByGroup(AccountType accountType) 
 }
 
 void CustomerDAO::promoteCustomer(string id, AccountType newType) {
-    if (newType == VIP){
+    Customer targetCustomer = findCustomerById(id);
+    if (targetCustomer.getAccountType() == VIP && newType <= VIP){
         cout << "This customer is already a VIP customer" << endl;
     }
     else {
-        Customer targetCustomer = findCustomerById(id);
         if (newType == targetCustomer.getAccountType()){
             cout << "Cannot promote the same Type, please try again" << endl;
         }
         else {
+            cout << "Promote successfully customer "<< id << " from " << targetCustomer.printAccountType() << " to:";
             targetCustomer.setAccountType(newType);
+            cout << targetCustomer.printAccountType() << endl;
             updateCustomerById(id, targetCustomer);
         }
     }
@@ -112,9 +114,9 @@ void CustomerDAO::addItemForCustomer(string customerId, Item item) {
     }
 }
 
-void CustomerDAO::returnItemForCustomer(string customerId, Item item) {
+void CustomerDAO::removeItemForCustomer(string customerId, Item item) {
     if(customerList.size() == 0){
-        cout << "There is not any customer with id:"<< customerId << endl;
+        cout << "This customer has not rent any item:"<< customerId << endl;
     }
     else {
         Customer targetCustomer = findCustomerById(customerId);
@@ -155,5 +157,11 @@ void CustomerDAO::sortByName() {
                 swap(customerList.getIndex(j), customerList.getIndex(j+1));
             }
     }
+}
+
+int CustomerDAO::getNumberOfRentals(string customerId) {
+    Customer targetCustomer = findCustomerById(customerId);
+    int numberOfRentals = targetCustomer.getNumberOfRentals();
+    return numberOfRentals;
 }
 

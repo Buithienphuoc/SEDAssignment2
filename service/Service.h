@@ -8,21 +8,51 @@
 #include "../data-access-object/CustomerDAO.cpp"
 #include "../data-access-object/ItemDAO.cpp"
 
+/*
+ * This is a class with void functions.
+ * Is used to get a request from a user and response with DAO (Data Access Object)
+ */
+
 class Service {
 private:
     CustomerDAO customerDao;
     ItemDAO itemDao;
 public:
-    // CRUD Item:
-    void addItem(Item item){
-        itemService.addNewItem(item);
-    }
+    /*
+    * ITEM LIST FUNCTIONS:
+    */
+    void add(Item item); // ==> Function overload
+    void showAllItem();
+    void showItemById(string id);
+    void updateItemById(string id, Item newInformation);
+    void deleteItemById(string id);
+    void receiveNewItemStock(string id, int numberOfNewCopies);
+    void decreaseNumberOfCopies(string id, int numberOfCopies);
+    void changeStatusOfItem(string id, RentalStatusType newStatus);
+    void showOutOfStockItem();
+    void sortItemById();
+    void sortItemByTitle();
 
-    void getItemById(string id){
-        itemService.findItemById(id);
-    }
-    // CRUD Customer:
+    /*
+    * CUSTOMER LIST FUNCTIONS:
+    */
+    void add(Customer customer); // ==> Function overload
+    void showAllCustomer();
+    void showCustomerById(string id);
+    void updateCustomerById(string id, Customer newInformation);
+    void deleteCustomerById(string id);
+    void showCustomersByName(string name);
+    void showCustomersByGroup(AccountType accountType);
+    void promoteCustomer(string id, AccountType newType);
+    void addItemForCustomer(string customerId, Item item);
+    void removeItemForCustomer(string customerId, Item item);
+    void sortCustomerById();
+    void sortCustomerByName();
+
     // Other functions:
+
+    void customerRentAnItem(string customerId, string itemId);
+    void rentWithAuthentication(string customerId, string itemId);
 };
 
 
