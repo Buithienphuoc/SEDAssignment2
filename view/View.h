@@ -5,17 +5,16 @@
 #ifndef TESTPROJECT_VIEW_H
 #define TESTPROJECT_VIEW_H
 
-#include "../service/CustomerService.h"
-#include "../service/ItemService.h"
-#include "iostream"
 
+#include "iostream"
+#include "../service/Service.cpp"
 
 class View {
 private:
-    CustomerService customerService;
-    ItemService itemService;
+    Service service;
 public:
     void showMenu();
+    void workWithChoice();
     void addUpdateDeleteItem();
     void addUpdateDeleteCustomer();
     void promoteAnExistingCustomer();

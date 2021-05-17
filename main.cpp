@@ -1,15 +1,12 @@
 #include "model/Customer.h"
 #include "model/Item.h"
 #include "linkedlist/LinkedList.cpp"
-#include "data-access-object/ItemDAO.cpp"
-#include "data-access-object/CustomerDAO.cpp"
-
+#include "view/View.cpp"
 using namespace std;
 
 int main() {
 
-    CustomerDAO customerDao;
-    ItemDAO itemDao;
+    Service service;
 
     Item item1("I123-2000", "Tron Legacy", RECORD, TWODAYLOAN, 10, 1000, COMEDY);
     Item item2("I124-2000","Avatar", RECORD, TWODAYLOAN, 10, 1000, DRAMA);
@@ -24,73 +21,39 @@ int main() {
     Customer customer4("C004", "Trung", "207/25/11", "0903988391", VIP);
     Customer customer5("C005", "Trung", "207/25/11", "0903988391", VIP);
 
-    customerDao.addNewCustomer(customer5);
-    customerDao.addNewCustomer(customer3);
-    customerDao.addNewCustomer(customer2);
-    customerDao.addNewCustomer(customer1);
-    customerDao.addNewCustomer(customer4);
+    service.add(customer5);
+    service.add(customer3);
+    service.add(customer2);
+    service.add(customer1);
+    service.add(customer4);
 
-    itemDao.addNewItem(item7);
-    itemDao.addNewItem(item1);
-    itemDao.addNewItem(item4);
-    itemDao.addNewItem(item5);
-    itemDao.addNewItem(item6);
-    itemDao.addNewItem(item3);
-    itemDao.addNewItem(item2);
+    service.add(item7);
+    service.add(item1);
+    service.add(item4);
+    service.add(item5);
+    service.add(item6);
+    service.add(item3);
+    service.add(item2);
 
-   /* string a = "c1";
-    string b = "a1";
-    if (a > b){
-        cout << "ahahah";
-    }
-    else if (a == b){
-        cout << "hihi";
-    }
-    else if (a < b){
-        cout << "hoho";
-    }*/
+    service.promoteCustomer("C002", VIP);
+    /*service.customerRentAnItem("C002","i126-2000");
+    service.showCustomerById("C002");*/
 
+    /*service.customerRentAnItem("C001", "I123-2000");
+    service.showCustomerById("C001");
+    service.showItemById("I123-2000");
+    service.showAllItem();*/
+    /*service.getAllItem();
+    service.sortItemById();
+    service.getAllItem();
+    service.sortItemByTitle();
+    service.showAllItem();
 
-    itemDao.showAllItem();
-    itemDao.sortById();
-    itemDao.showAllItem();
-    itemDao.sortByTitle();
-    itemDao.showAllItem();
-
-    customerDao.showAllCustomer();
-    customerDao.sortById();
-    customerDao.showAllCustomer();
-    customerDao.sortByName();
-    customerDao.showAllCustomer();
-
-
-    /*customerDao.findCustomerByName("trung").print();
-    customerDao.showAllCustomer();
-    customerDao.deleteCustomerById("c3");
-    customerDao.showAllCustomer();
-
-    cout << itemDao.findItemById("ss1") << endl;*/
-
-    /*for(int i = 1; i <= 10; i++){
-        customerDao.addItemForCustomer(customer4.getId(), item5);
-    }
-    customerDao.findCustomerById("4").showAllRentals();*/
-
-    /*cout << itemDao.findItemById("4") << endl;
-    cout << itemDao.findItemByTitle("Avatar") << endl;*/
-
-
-    /*customerDao.addNewCustomer(customer1);
-    customerDao.addNewCustomer(customer2);
-    customerDao.addNewCustomer(customer3);
-    customerDao.addNewCustomer(customer4);
-
-    customerDao.showAllCustomer();
-    customerDao.swap(customer1,customer2);
-    customerDao.swap(customer3,customer4);
-    customerDao.showAllCustomer();
-    customerDao.swap(customer1,customer3);
-    customerDao.showAllCustomer();*/
+    service.getAllCustomer();
+    service.sortCustomerById();
+    service.getAllCustomer();
+    service.sortCustomerByName();
+    service.showAllCustomer();*/
 
     return 0;
 }

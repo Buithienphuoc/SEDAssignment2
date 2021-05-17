@@ -22,10 +22,11 @@ public:
     void deleteCustomerById(string id);
     void promoteCustomer(string id, AccountType newType);
     void addItemForCustomer(string customerId, Item item);
-    void returnItemForCustomer(string customerId, Item item);
+    void removeItemForCustomer(string customerId, Item item);
     void swap(Customer customer1, Customer customer2);
     void sortById();
     void sortByName();
+    int getNumberOfRentals(string customerId);
 };
 
 

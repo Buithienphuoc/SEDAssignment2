@@ -139,6 +139,11 @@ public:
         listOfRentals_.print();
     }
 
+    // Number of rentals:
+    int getNumberOfRentals(){
+        return listOfRentals_.size();
+    }
+
     // To String
 
     string printAccountType() const{

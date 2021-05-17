@@ -159,7 +159,6 @@ void LinkedList<T>::update(T oldNode, T newNode) {
         position++;
         if (current->val == oldNode) {
             current->val = newNode;
-            printf("\n%d found at position %d, replaced with %d\n", oldNode, position, newNode);
             return;
         }
         current = current->next;

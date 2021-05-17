@@ -15,10 +15,11 @@ void ItemDAO::showAllItem(){
 }
 
 Item ItemDAO::findItemById(string id) {
+    id = toUpperCase(id);
     for (int itemPosition = 0; itemPosition <= itemList.size(); itemPosition++){
         Item targetItem = itemList.getIndex(itemPosition);
-        string targetString = toLowerCase(targetItem.getId());
-        if (toLowerCase(targetString) == id) {
+        string targetString = toUpperCase(targetItem.getId());
+        if (targetString == id) {
             return targetItem;
         }
     }
@@ -27,10 +28,11 @@ Item ItemDAO::findItemById(string id) {
 }
 
 Item ItemDAO::findItemByTitle(string title) {
+    title = toLowerCase(title);
     for (int itemPosition = 0; itemPosition <= itemList.size(); itemPosition++){
         Item targetItem = itemList.getIndex(itemPosition);
         string targetString = toLowerCase(targetItem.getTitle());
-        if (toLowerCase(targetString) == toLowerCase(title)) {
+        if (targetString == title) {
             return targetItem;
         }
     }
@@ -53,7 +55,10 @@ void ItemDAO::receiveNewItemStock(string id, int numberOfNewCopies) {
     targetItem.setNumberOfCopies(targetItem.getNumberOfCopies() + numberOfNewCopies);
     updateItemById(id,targetItem);
 }
-
+/*
+ * You may ask:" Why did I want to put the number of copy for this function as the param ? "
+ * Answer: "In the future someone wants to develop functions with: borrow more than 2 copy"
+ */
 void ItemDAO::decreaseNumberOfCopies(string id, int numberOfCopies) {
     Item targetItem = findItemById(id);
     if (numberOfCopies <= targetItem.getNumberOfCopies()){
