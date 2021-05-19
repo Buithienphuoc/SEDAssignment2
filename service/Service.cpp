@@ -100,8 +100,8 @@ void Service::addItemForCustomer(string customerId, Item item) {
     customerDao.addItemForCustomer(customerId, item);
 }
 
-void Service::removeItemForCustomer(string customerId, Item item) {
-    customerDao.removeItemForCustomer(customerId, item);
+void Service::removeItemForCustomer(string customerId, string itemId) {
+    customerDao.removeItemForCustomer(customerId, itemId);
 }
 
 void Service::sortCustomerById() {
@@ -136,5 +136,27 @@ void Service::customerRentAnItem(string customerId, string itemId) {
     else { // ==> if the number of copy is 0
         cout << "There is not any copy of item with id = " << itemId << " to rent, please wait for more stock or someone return" << endl;
     }
+}
+
+void Service::rentWithAuthentication(string customerId, string itemId) {
+    Customer customer = customerDao.findCustomerById(customerId);
+    Item item = itemDao.findItemById(itemId);
+    if (customer.getAccountType() == GUEST and customer.getNumberOfRentals() == 2){
+        cout << "Customer with id:" << customerId << " is the GUEST, please ask to promote to rent more item";
+    }
+    else if (customer.getAccountType() == REGULAR and customer.getNumberOfRentals() == 3){
+        cout << "Customer with id:" << customerId << " is the REGULAR, please ask to promote to rent more item";
+    }
+    else if (customer.getAccountType() == GUEST and item.getLoanType() == TWODAYLOAN){
+        cout << "Customer with id:" << customerId << " is the guest, please ask to promote to rent 2-days loan item";
+    }
+    else {
+        customerRentAnItem(customerId,itemId);
+    }
+}
+
+void Service::customerReturnAnItem(string customerId, string itemId){
+    customerDao.removeItemForCustomer(customerId, itemId);
+    itemDao.receiveNewItemStock(itemId,1);
 }
 

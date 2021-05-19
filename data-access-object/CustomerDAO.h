@@ -6,7 +6,7 @@
 #define TESTPROJECT_CUSTOMERDAO_H
 
 #include "../model/Customer.h"
-#include "../linkedlist/LinkedList.h"
+#include "../linkedlist/LinkedList.cpp"
 
 class CustomerDAO {
 private:
@@ -22,7 +22,7 @@ public:
     void deleteCustomerById(string id);
     void promoteCustomer(string id, AccountType newType);
     void addItemForCustomer(string customerId, Item item);
-    void removeItemForCustomer(string customerId, Item item);
+    void removeItemForCustomer(string customerId, string itemId);
     void swap(Customer customer1, Customer customer2);
     void sortById();
     void sortByName();

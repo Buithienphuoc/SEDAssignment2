@@ -58,7 +58,15 @@ namespace string_conversion {
     }
 
     AccountType convertStringToAccountType(string theString){
-        return GUEST;
+        if (toUpperCase(theString) == "GUEST"){
+            return GUEST;
+        } else if (toUpperCase(theString) == "REGULAR"){
+            return REGULAR;
+        } else if (toUpperCase(theString) == "VIP"){
+            return VIP;
+        } else {
+            return GUEST;
+        }
     }
 }
 

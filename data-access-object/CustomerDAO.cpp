@@ -87,7 +87,9 @@ LinkedList<Customer> CustomerDAO::findCustomersByGroup(AccountType accountType) 
 
 void CustomerDAO::promoteCustomer(string id, AccountType newType) {
     Customer targetCustomer = findCustomerById(id);
-    if (targetCustomer.getAccountType() == VIP && newType <= VIP){
+    if (targetCustomer.getAccountType() == 0){
+        cout << "There is not any customer with id = " << id;
+    } else if (targetCustomer.getAccountType() == VIP && newType <= VIP ){
         cout << "This customer is already a VIP customer" << endl;
     }
     else {
@@ -114,19 +116,23 @@ void CustomerDAO::addItemForCustomer(string customerId, Item item) {
     }
 }
 
-void CustomerDAO::removeItemForCustomer(string customerId, Item item) {
+void CustomerDAO::removeItemForCustomer(string customerId, string itemId) {
     if(customerList.size() == 0){
         cout << "This customer has not rent any item:"<< customerId << endl;
     }
     else {
         Customer targetCustomer = findCustomerById(customerId);
-
-        if (targetCustomer.getListOfRentals().has(item)) {
-            targetCustomer.removeItem(item);
-            updateCustomerById(customerId, targetCustomer);
-            cout << "Item with id = "<< item.getId() << " is returned" << endl;
-        } else {
-            cout << "You don't have this item id = " << item.getId() <<" to return" << endl;
+        LinkedList<Item> listOfRentals = targetCustomer.getListOfRentals();
+        for (int i = 1; i <= listOfRentals.size(); i++){
+            Item item = listOfRentals.getIndex(i);
+            if (item.getId() == itemId){
+                listOfRentals.deleteItem(item);
+                targetCustomer.setListOfRentals(listOfRentals);
+                updateCustomerById(customerId, targetCustomer);
+            }
+            else {
+                cout << "There is not any RENT item with id =" << itemId;
+            }
         }
     }
 }
