@@ -6,11 +6,12 @@
 #define TESTPROJECT_ITEM_H
 
 #include "iostream"
-#include "../data-type/RentalType.cpp"
-#include "../data-type/LoanType.cpp"
-#include "../data-type/RentalStatusType.cpp"
-#include "../data-type/GenreType.cpp"
-#include "../data-type/StringType.cpp"
+#include "../enumerations/RentalType.cpp"
+#include "../enumerations/LoanType.cpp"
+#include "../enumerations/RentalStatusType.cpp"
+#include "../enumerations/GenreType.cpp"
+#include "../enumerations/AccountType.cpp"
+#include "../utils/StringType.cpp"
 
 
 using namespace std;
