@@ -10,10 +10,9 @@
 #include <iostream>
 #include "../linkedlist/LinkedList.h"
 #include "Item.h"
-#include "../data-type/AccountType.cpp"
 
 using namespace std;
-using namespace string_conversion;
+
 class Customer {
 private:
     string id_;

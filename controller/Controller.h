@@ -9,9 +9,19 @@
 #include "iostream"
 #include "../service/Service.cpp"
 
-class View {
+class Controller {
 private:
     Service service;
+
+protected:
+    void loadDatabase();
+    void addItem();
+    void addCustomer();
+    void updateItem();
+    void updateCustomer();
+    void deleteItem();
+    void deleteCustomer();
+
 public:
     void showMenu();
     void workWithChoice();
@@ -25,7 +35,11 @@ public:
     void displayAllCustomer();
     void displayGroupOfCustomer();
     void searchItemOrCustomer();
+    void saveAndExit();
+    void runProgram();
+    Item getItemInput();
+    Customer getCustomerInput();
 };
 
 
-#endif //TESTPROJECT_VIEW_H
+#endif //TESTPROJECT_CONTROLLER_H

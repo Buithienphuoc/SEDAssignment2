@@ -1,12 +1,13 @@
 #include "model/Customer.h"
 #include "model/Item.h"
 #include "linkedlist/LinkedList.cpp"
-#include "view/View.cpp"
+#include "controller/Controller.cpp"
 using namespace std;
 
 int main() {
 
     Service service;
+    Controller controller;
 
     Item item1("I123-2000", "Tron Legacy", RECORD, TWODAYLOAN, 10, 1000, COMEDY);
     Item item2("I124-2000","Avatar", RECORD, TWODAYLOAN, 10, 1000, DRAMA);
@@ -35,7 +36,10 @@ int main() {
     service.add(item3);
     service.add(item2);
 
-    service.promoteCustomer("C002", VIP);
+    Item item = controller.getItemInput();
+    cout << item;
+
+    /*service.promoteCustomer("C002", VIP);*/
     /*service.customerRentAnItem("C002","i126-2000");
     service.showCustomerById("C002");*/
 
