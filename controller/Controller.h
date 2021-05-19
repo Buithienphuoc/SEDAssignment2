@@ -23,6 +23,10 @@ protected:
     void deleteCustomer();
     Item getItemInput();
     Customer getCustomerInput();
+    void searchItemById();
+    void searchCustomerById();
+    void searchItemByTitle();
+    void searchCustomerByName();
 
 public:
     void showMenu();

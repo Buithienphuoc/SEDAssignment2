@@ -190,6 +190,31 @@ void Controller::displayGroupOfCustomer(){
 
 // 10. Search items or customers
 void Controller::searchItemOrCustomer() {
+    string choice;
+    bool isRunning = true;
+    while (isRunning){
+        cout << "What do you want to search ? \n"
+                "1. Search an ITEM by id \n"
+                "2. Search an ITEM by title \n"
+                "3. Search a CUSTOMER by id \n"
+                "4. Search a CUSTOMER by name \n"
+                "Type 'back' or 'return' to go to Main menu \n"
+                "Your choice:";
+        cin >> choice;
+        if (choice == "1"){
+            searchItemById();
+        } else if (choice == "2") {
+            searchItemByTitle();
+        } else if (choice == "3") {
+            searchCustomerById();
+        } else if (choice == "4") {
+            searchCustomerByName();
+        } else if (toLowerCase(choice) == "exit" or  toLowerCase(choice) == "return") {
+            isRunning = false;
+        } else {
+            cout << "Please type again..." << endl;
+        }
+    }
 
 }
 
@@ -327,4 +352,36 @@ void Controller::deleteCustomer() {
     cin >> id;
     cout << endl;
     service.deleteCustomerById(id);
+}
+
+void Controller::searchItemById() {
+    string id;
+    cout << "Type the item id to search:";
+    cin >> id;
+    cout << endl;
+    service.showItemById(id);
+}
+
+void Controller::searchCustomerById() {
+    string id;
+    cout << "Type the customer id to search:";
+    cin >> id;
+    cout << endl;
+    service.showCustomerById(id);
+}
+
+void Controller::searchItemByTitle() {
+    string title;
+    cout << "Type the item id to search:";
+    cin >> title;
+    cout << endl;
+    service.showItemByTitle(title);
+}
+
+void Controller::searchCustomerByName() {
+    string id;
+    cout << "Type the item id to search:";
+    cin >> id;
+    cout << endl;
+    service.showItemById(id);
 }
