@@ -45,7 +45,7 @@ public:
     void showCustomersByGroup(AccountType accountType);
     void promoteCustomer(string id, AccountType newType);
     void addItemForCustomer(string customerId, Item item);
-    void removeItemForCustomer(string customerId, Item item);
+    void removeItemForCustomer(string customerId, string itemId);
     void sortCustomerById();
     void sortCustomerByName();
 
@@ -53,6 +53,7 @@ public:
 
     void customerRentAnItem(string customerId, string itemId);
     void rentWithAuthentication(string customerId, string itemId);
+    void customerReturnAnItem(string customerId, string itemId);
 };
 
 

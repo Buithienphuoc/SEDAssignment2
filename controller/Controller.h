@@ -21,6 +21,8 @@ protected:
     void updateCustomer();
     void deleteItem();
     void deleteCustomer();
+    Item getItemInput();
+    Customer getCustomerInput();
 
 public:
     void showMenu();
@@ -37,8 +39,6 @@ public:
     void searchItemOrCustomer();
     void saveAndExit();
     void runProgram();
-    Item getItemInput();
-    Customer getCustomerInput();
 };
 
 
