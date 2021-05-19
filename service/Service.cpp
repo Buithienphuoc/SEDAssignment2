@@ -25,7 +25,7 @@ void Service::showItemById(string id) {
 void Service::showItemByTitle(string title) {
     Item theItem = itemDao.findItemByTitle(title);
     cout << "Item with title:" << title << endl;
-    cout << theItem
+    cout << theItem;
 }
 
 void Service::updateItemById(string id, Item newInformation) {
