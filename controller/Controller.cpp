@@ -6,7 +6,6 @@
 
 // Load database
 void Controller::loadDatabase() {
-
 }
 
 // Main menu:
@@ -167,6 +166,15 @@ void Controller::returnItem(){
 
 // 6. Display all items
 void Controller::displayAllItem() {
+    string sortByType;
+    cout << "Sort by (id, title, default is by ID): ";
+    cin >> sortByType;
+    sortByType = toLowerCase(sortByType);
+    if (sortByType == "title"){
+        service.sortItemByTitle();
+    } else {
+        service.sortItemById();
+    }
     service.showAllItem();
 }
 
@@ -178,6 +186,15 @@ void Controller::displayOutOfStockItem() {
 
 // 8. Display all customers
 void Controller::displayAllCustomer() {
+    string sortByType;
+    cout << "Sort by (id, name, default is by ID): ";
+    cin >> sortByType;
+    sortByType = toLowerCase(sortByType);
+    if (sortByType == "name"){
+        service.sortCustomerByName();
+    } else {
+        service.sortCustomerById();
+    }
     service.showAllCustomer();
 }
 
@@ -227,6 +244,7 @@ void Controller::saveAndExit() {
 void Controller::runProgram() {
     loadDatabase();
     workWithChoice();
+    saveAndExit();
 }
 
 // Protected Functions:
