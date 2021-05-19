@@ -22,6 +22,12 @@ void Service::showItemById(string id) {
     cout << theItem;
 }
 
+void Service::showItemByTitle(string title) {
+    Item theItem = itemDao.findItemByTitle(title);
+    cout << "Item with title:" << title << endl;
+    cout << theItem;
+}
+
 void Service::updateItemById(string id, Item newInformation) {
     itemDao.updateItemById(id, newInformation);
 }
@@ -159,4 +165,6 @@ void Service::customerReturnAnItem(string customerId, string itemId){
     customerDao.removeItemForCustomer(customerId, itemId);
     itemDao.receiveNewItemStock(itemId,1);
 }
+
+
 

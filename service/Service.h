@@ -24,6 +24,7 @@ public:
     void add(Item item); // ==> Function overload
     void showAllItem();
     void showItemById(string id);
+    void showItemByTitle(string title);
     void updateItemById(string id, Item newInformation);
     void deleteItemById(string id);
     void receiveNewItemStock(string id, int numberOfNewCopies);
