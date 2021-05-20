@@ -16,22 +16,22 @@ void ItemDAO::showAllItem(){
 
 Item ItemDAO::findItemById(string id) {
     id = toUpperCase(id);
-    for (int itemPosition = 0; itemPosition <= itemList.size(); itemPosition++){
+    cout << "find item id:" << id << endl;
+    for (int itemPosition = 1; itemPosition <= itemList.size(); itemPosition++){
         Item targetItem = itemList.getIndex(itemPosition);
         string targetString = toUpperCase(targetItem.getId());
         if (targetString == id) {
             return targetItem;
         }
     }
-    cout << "There is not item with id " << id << endl;
+    cout << "Find Fail" << endl;
     return Item();
 }
 
 Item ItemDAO::findItemByTitle(string title) {
-    title = toLowerCase(title);
-    for (int itemPosition = 0; itemPosition <= itemList.size(); itemPosition++){
+    for (int itemPosition = 1; itemPosition <= itemList.size(); itemPosition++){
         Item targetItem = itemList.getIndex(itemPosition);
-        string targetString = toLowerCase(targetItem.getTitle());
+        string targetString = toUpperCase(targetItem.getTitle());
         if (targetString == title) {
             return targetItem;
         }

@@ -24,7 +24,7 @@ private:
     RentalType rentalType_;
     LoanType loanType_;
     int numberOfCopies_;
-    int rentalFee_;
+    float rentalFee_;
     GenreType genreType_;
     RentalStatusType rentalStatus_;
 
@@ -34,7 +34,7 @@ public:
 
     // Constructor for games:
     Item(const string &id, const string &title, RentalType rentalType, LoanType loanType, int numberOfCopies,
-         int rentalFee) : id_(id), title_(title), rentalType_(rentalType), loanType_(loanType),
+         float rentalFee) : id_(id), title_(title), rentalType_(rentalType), loanType_(loanType),
                           numberOfCopies_(numberOfCopies), rentalFee_(rentalFee) {
         if(numberOfCopies != 0){
             rentalStatus_ = AVAILABLE;
@@ -46,7 +46,7 @@ public:
 
     // Constructor for DVD and Records
     Item(const string &id, const string &title, RentalType rentalType, LoanType loanType, int numberOfCopies,
-         int rentalFee, GenreType genreType) : id_(id), title_(title), rentalType_(rentalType), loanType_(loanType),
+         float rentalFee, GenreType genreType) : id_(id), title_(title), rentalType_(rentalType), loanType_(loanType),
                                                numberOfCopies_(numberOfCopies), rentalFee_(rentalFee),
                                                genreType_(genreType) {
         if(numberOfCopies != 0){
@@ -79,7 +79,7 @@ public:
         return numberOfCopies_;
     }
 
-    int getRentalFee() const {
+    float getRentalFee() const {
         return rentalFee_;
     }
 
@@ -113,7 +113,7 @@ public:
         numberOfCopies_ = numberOfCopies;
     }
 
-    void setRentalFee(int fee) {
+    void setRentalFee(float fee) {
         Item::rentalFee_ = fee;
     }
 

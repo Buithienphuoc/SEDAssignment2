@@ -3,6 +3,8 @@
 //
 
 
+#include <sstream>
+
 using namespace std;
 
 namespace string_conversion {
@@ -43,13 +45,15 @@ namespace string_conversion {
     }
 
     GenreType convertStringToGenreType(string theString){
-        if (toUpperCase(theString) == "ACTION"){
+        theString = toUpperCase(theString);
+        cout << "genre type:" << theString << endl;
+        if (theString == "ACTION"){
             return ACTION;
-        } else if (toUpperCase(theString) == "HORROR"){
+        } else if (theString == "HORROR"){
             return HORROR;
-        } else if (toUpperCase(theString) == "DRAMA"){
+        } else if (theString == "DRAMA"){
             return DRAMA;
-        } else if (toUpperCase(theString) == "COMEDY"){
+        } else if (theString == "COMEDY"){
             return COMEDY;
         } else {
             cout << "Wrong genre type input, use default" << endl;
@@ -58,15 +62,31 @@ namespace string_conversion {
     }
 
     AccountType convertStringToAccountType(string theString){
-        if (toUpperCase(theString) == "GUEST"){
+        theString = toUpperCase(theString);
+        cout << "Role in function:" << theString << endl;
+        if (theString == "GUEST"){
             return GUEST;
-        } else if (toUpperCase(theString) == "REGULAR"){
+        } else if (theString == "REGULAR"){
             return REGULAR;
-        } else if (toUpperCase(theString) == "VIP"){
+        } else if (theString == "VIP"){
             return VIP;
         } else {
+            cout << "Wrong customer type input, use default" << endl;
             return GUEST;
         }
+    }
+
+    LinkedList<string> splitString(const string& str)
+    {
+        LinkedList<string> wordList;
+        stringstream ss(str);
+
+        while (ss.good()) {
+            string substr;
+            getline(ss, substr, ',');
+            wordList.add(substr);
+        }
+        return wordList;
     }
 }
 

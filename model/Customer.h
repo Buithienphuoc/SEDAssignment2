@@ -19,6 +19,7 @@ private:
     string name_;
     string address_;
     string phone_;
+    int numberOfRentals;
     AccountType accountType_;
     LinkedList<Item> listOfRentals_;
 
@@ -30,6 +31,11 @@ public:
 
     Customer(const string &id, const string &name, const string &address, const string &phone, AccountType accountType)
             : id_(id), name_(name), address_(address), phone_(phone), accountType_(accountType) {}
+
+    Customer(const string &id, const string &name, const string &address, const string &phone, int numberOfRentals,
+             AccountType accountType) : id_(id), name_(name), address_(address), phone_(phone),
+                                        numberOfRentals(numberOfRentals), accountType_(accountType) {}
+
 
     // GETTERS:
     const string &getId() const {
@@ -140,6 +146,7 @@ public:
 
     // Number of rentals:
     int getNumberOfRentals(){
+        this->numberOfRentals = listOfRentals_.size();
         return listOfRentals_.size();
     }
 
@@ -159,7 +166,7 @@ public:
 
     friend ostream &operator<<(ostream &os, const Customer &customer) {
         os << "id_: " << customer.id_ << " name_: " << customer.name_ << " address_: " << customer.address_
-           << " phone_: " << customer.phone_ << " accountType_:" << customer.printAccountType();
+           << " phone_: " << customer.phone_ << " numberOfRentals: " << customer.numberOfRentals << " accountType_:" << customer.printAccountType();
         return os;
     }
 };
