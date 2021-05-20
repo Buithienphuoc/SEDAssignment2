@@ -6,6 +6,7 @@
 
 // Load database
 void Controller::loadDatabase() {
+    service.loadDatabase();
 }
 
 // Main menu:

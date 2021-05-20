@@ -61,13 +61,8 @@ void CustomerDAO::deleteCustomerById(string id) {
 }
 
 void CustomerDAO::updateCustomerById(string id, Customer newInformation) {
-    if (customerList.size() == 0) {
-        cout << "There is not any customer" << endl;
-    }
-    else {
         Customer oldInformation = findCustomerById(id);
         customerList.update(oldInformation, newInformation);
-    }
 }
 
 LinkedList<Customer> CustomerDAO::findCustomersByGroup(AccountType accountType) {
@@ -106,14 +101,9 @@ void CustomerDAO::promoteCustomer(string id, AccountType newType) {
 }
 
 void CustomerDAO::addItemForCustomer(string customerId, Item item) {
-    if(customerList.size() == 0){
-        cout << "There is not any customer:" << customerId << endl;
-    }
-    else {
         Customer targetCustomer = findCustomerById(customerId);
         targetCustomer.addItem(item);
         updateCustomerById(customerId, targetCustomer);
-    }
 }
 
 void CustomerDAO::removeItemForCustomer(string customerId, string itemId) {

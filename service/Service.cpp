@@ -102,7 +102,8 @@ void Service::promoteCustomer(string id, AccountType newType) {
     customerDao.promoteCustomer(id, newType);
 }
 
-void Service::addItemForCustomer(string customerId, Item item) {
+void Service::addItemForCustomer(string customerId, string itemId){
+    Item item = itemDao.findItemById(itemId);
     customerDao.addItemForCustomer(customerId, item);
 }
 
@@ -166,5 +167,123 @@ void Service::customerReturnAnItem(string customerId, string itemId){
     itemDao.receiveNewItemStock(itemId,1);
 }
 
+void Service::loadDatabase() {
+    loadItemFile();
+    loadCustomerFile();
+}
 
+void Service::loadItemFile() {
+    // Create a text string, which is used to output the text file
+    LinkedList<string> myItemList;
+    // Declare item:
+    string id;
+    string title;
+    RentalType rentalType;
+    LoanType loan;
+    GenreType genre;
+    int numberOfCopies;
+    float rentalFee;
+    fstream itemFile("database/items.txt");
+    string line;
+    if (itemFile.is_open()){
+        while (getline(itemFile, line)){
+            line = line+ "\n";
+            myItemList.add(line);
+        }
+        itemFile.close();
 
+        for (int i = 1; i <= myItemList.size(); i++){
+            string itemObjectString = myItemList.getIndex(i);
+            LinkedList<string> itemInfoList;
+            itemInfoList = splitString(itemObjectString);
+            cout << "Add item " << i << ":" << endl;
+            cout << "item info size =" << itemInfoList.size()<<endl;
+            if (itemInfoList.size() == 6){
+                cout << "id=" << itemInfoList.getIndex(1) << endl;
+                id = itemInfoList.getIndex(1);
+                cout << "title=" << itemInfoList.getIndex(2) << endl;
+                title = itemInfoList.getIndex(2);
+                cout << "rental type=" << itemInfoList.getIndex(3) << endl;
+                rentalType = convertStringToRentalType(itemInfoList.getIndex(3));
+                cout << "loan type=" << itemInfoList.getIndex(4) << endl;
+                loan = convertStringToLoanType(itemInfoList.getIndex(4));
+                cout << "no.copies=" << itemInfoList.getIndex(5) << endl;
+                numberOfCopies = stoi(itemInfoList.getIndex(5));
+                cout << "price=" << itemInfoList.getIndex(6) << endl;
+                rentalFee = stof(itemInfoList.getIndex(6));
+                Item item(id,title,rentalType,loan,numberOfCopies,rentalFee);
+                add(item);
+                cout << endl;
+            }
+            else if (itemInfoList.size() == 7){
+                cout << "id=" << itemInfoList.getIndex(1) << endl;
+                id = itemInfoList.getIndex(1);
+                cout << "title=" << itemInfoList.getIndex(2) << endl;
+                title = itemInfoList.getIndex(2);
+                cout << "type=" << itemInfoList.getIndex(3) << endl;
+                rentalType = convertStringToRentalType(itemInfoList.getIndex(3));
+                cout << "loan=" << itemInfoList.getIndex(4) << endl;
+                loan = convertStringToLoanType(itemInfoList.getIndex(4));
+                cout << "no.copies=" << itemInfoList.getIndex(5) << endl;
+                numberOfCopies = stoi(itemInfoList.getIndex(5));
+                cout << "price=" << itemInfoList.getIndex(6) << endl;
+                rentalFee = stof(itemInfoList.getIndex(6));
+                cout << "genre=" << itemInfoList.getIndex(7);
+                genre = convertStringToGenreType(itemInfoList.getIndex(7));
+                Item item(id,title,rentalType,loan,numberOfCopies,rentalFee,genre);
+                add(item);
+                cout << endl;
+            }
+            cout << endl;
+        }
+    }
+}
+
+void Service::loadCustomerFile() {
+    LinkedList<string> myCustomerList;
+    fstream customerFile("database/customers.txt");
+    string line;
+    string customerId;
+    string customerName;
+    string customerAddress;
+    string customerPhone;
+    int numberOfRentals;
+    AccountType accountType;
+    if (customerFile.is_open()){
+        while (getline(customerFile, line)){
+            line = line + "\n";
+            myCustomerList.add(line);
+        }
+        customerFile.close();
+        for (int i = 1; i <= myCustomerList.size(); i++){
+            string customerObjectString = myCustomerList.getIndex(i);
+            if (customerObjectString[0] == 'I'){
+                cout << "Add item " << customerObjectString << endl;
+                cout << "for customer with id=" << customerId << endl;
+                addItemForCustomer(customerId,customerObjectString);
+                cout << endl;
+                customerDao.findCustomerById(customerId).getListOfRentals().print();
+            }
+            else if (customerObjectString[0] == 'C'){
+                LinkedList<string> customerInfoList;
+                customerInfoList = splitString(customerObjectString);
+                cout << "Add customer of line " << i << ":" << endl;
+                cout << "Customer ID:" << customerInfoList.getIndex(1) << endl;
+                customerId = customerInfoList.getIndex(1);
+                cout << "Customer name:" << customerInfoList.getIndex(2) << endl;
+                customerName = customerInfoList.getIndex(2);
+                cout << "Customer address:" << customerInfoList.getIndex(3) << endl;
+                customerAddress = customerInfoList.getIndex(3);
+                cout << "Customer phone:" << customerInfoList.getIndex(4) << endl;
+                customerPhone = customerInfoList.getIndex(4);
+                cout << "Number of rentals:" << customerInfoList.getIndex(5) << endl;
+                numberOfRentals = stoi(customerInfoList.getIndex(5));
+                cout << "Customer account type:" << customerInfoList.getIndex(6) << endl;
+                accountType = convertStringToAccountType(customerInfoList.getIndex(6));
+                Customer customer(customerId,customerName,customerAddress,customerPhone,numberOfRentals,accountType);
+                add(customer);
+                cout << endl;
+            }
+        }
+    }
+}
