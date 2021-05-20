@@ -187,7 +187,6 @@ void Service::loadItemFile() {
     string line;
     if (itemFile.is_open()){
         while (getline(itemFile, line)){
-            line = line+ "\n";
             myItemList.add(line);
         }
         itemFile.close();
@@ -251,7 +250,6 @@ void Service::loadCustomerFile() {
     AccountType accountType;
     if (customerFile.is_open()){
         while (getline(customerFile, line)){
-            line = line + "\n";
             myCustomerList.add(line);
         }
         customerFile.close();
