@@ -29,9 +29,10 @@ Item ItemDAO::findItemById(string id) {
 }
 
 Item ItemDAO::findItemByTitle(string title) {
+    title = toLowerCase(title);
     for (int itemPosition = 1; itemPosition <= itemList.size(); itemPosition++){
         Item targetItem = itemList.getIndex(itemPosition);
-        string targetString = toUpperCase(targetItem.getTitle());
+        string targetString = toLowerCase(targetItem.getTitle());
         if (targetString == title) {
             return targetItem;
         }

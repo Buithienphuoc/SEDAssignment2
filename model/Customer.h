@@ -94,6 +94,10 @@ public:
     void setVipPoint(int point) {
         Customer::vipPoint = point;
     }
+
+    void setNumberOfRentals(int rentals) {
+        Customer::numberOfRentals = rentals;
+    }
     // Compare operators:
 
     bool operator==(const Customer &rhs) const {
