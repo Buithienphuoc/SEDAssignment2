@@ -112,6 +112,51 @@ namespace string_conversion {
     inline std::string trim(std::string s, const char* t = ws){
         return ltrim(rtrim(s, t), t);
     }
+
+    bool isDigit(char input_char){
+
+        // CHECKING FOR DIGITS
+        if (input_char >= 48 && input_char <= 57)
+            return true;
+        // CHECKING FOR ALPHABET
+        else {
+            return false;
+        }
+    }
+
+    bool isItemIdFormat(string id){ //IXXX-YYYY => length = 9 , id[4] = '-'
+        if (id.length() != 9){
+            return false;
+        }
+        else if(id[0] != 'I' or !isDigit(id[1])
+        or !isDigit(id[2])
+        or !isDigit(id[3])
+        or id[4] != '-'
+        or !isDigit(id[5])
+        or !isDigit(id[6])
+        or !isDigit(id[7])
+        or !isDigit(id[8])){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    bool isCustomerIdFormat(string id){ //CXXX => length = 4
+        if(id.length() != 4){
+            return false;
+        }
+        else if (id[0] != 'C'
+        or !isDigit(id[1])
+        or !isDigit(id[2])
+        or !isDigit(id[3])){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
 
 
