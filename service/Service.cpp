@@ -155,7 +155,7 @@ void Service::rentWithAuthentication(string customerId, string itemId) {
         cout << "Customer with id:" << customerId << " is the REGULAR, please ask to promote to rent more item";
     }
     else if (customer.getAccountType() == GUEST and item.getLoanType() == TWODAYLOAN){
-        cout << "Customer with id:" << customerId << " is the guest, please ask to promote to rent 2-days loan item";
+        cout << "Customer with id:" << customerId << " is the guest, please ask to promote to rent 2-days loan item" << endl;
     }
     else {
         customerRentAnItem(customerId,itemId);

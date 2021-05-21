@@ -53,6 +53,9 @@ void ItemDAO::updateItemById(string id, Item newInformation) {
 void ItemDAO::receiveNewItemStock(string id, int numberOfNewCopies) {
     Item targetItem = findItemById(id);
     targetItem.setNumberOfCopies(targetItem.getNumberOfCopies() + numberOfNewCopies);
+    if (targetItem.getRentalStatus()==BORROWED){
+        changeStatusOfItem(id, AVAILABLE);
+    }
     updateItemById(id,targetItem);
 }
 /*
@@ -78,6 +81,8 @@ void ItemDAO::changeStatusOfItem(string id, RentalStatusType newStatus) {
     Item targetItem = findItemById(id);
     if (targetItem.getRentalStatus() != newStatus){
         targetItem.setRentalStatus(newStatus);
+        cout << "Change status of item:" << toUpperCase(id) << " to " << targetItem.printRentalStatus() << endl;
+        updateItemById(id,targetItem);
     }
 }
 

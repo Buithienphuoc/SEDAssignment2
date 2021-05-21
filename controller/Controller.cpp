@@ -11,7 +11,7 @@ void Controller::loadDatabase() {
 
 // Main menu:
 void Controller::showMenu() {
-    cout << " Welcome to Genie’s video store \n"
+    cout << "❁ ❁ ❁ ❁ ❁ ❁ ❁ ❁ ❁  WELCOME TO GENIE VIDEO STORE ❁ ❁ ❁ ❁ ❁ ❁ ❁ ❁ ❁\n"
             "Enter an option below. \n"
             "1. Add a new item, update or delete an existing item \n"
             "2. Add new customer or update an existing customer \n"
@@ -72,6 +72,7 @@ void Controller::addUpdateDeleteItem() {
         cout << " 1.Add item \n"
                 " 2.Update item \n"
                 " 3.Delete item \n"
+                " 4.Receive new stock \n"
                 " Type 'return' or 'back' to return to main menu " << endl;
         cout << "Your choice:";
         cin >> userChoice;
@@ -82,6 +83,8 @@ void Controller::addUpdateDeleteItem() {
             updateItem();
         } else if (userChoice == "3") { // Delete customer
             deleteItem();
+        } else if (userChoice == "4") {
+            receiveNewStock();
         } else if (toLowerCase(userChoice) == "return" or toLowerCase(userChoice) == "back") {
             isRunning = false;
         } else {
@@ -406,4 +409,16 @@ void Controller::searchCustomerByName() {
     cin >> id;
     cout << endl;
     service.showItemById(id);
+}
+
+void Controller::receiveNewStock() {
+    string itemId;
+    int numberOfNewStock;
+    cout << " Type number of item id to add more number of copy:";
+    cin >> itemId;
+    cout << endl;
+    cout << " Type number of new stock";
+    cin >> numberOfNewStock;
+    cout << endl;
+    service.receiveNewItemStock(itemId, numberOfNewStock);
 }
