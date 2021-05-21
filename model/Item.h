@@ -6,18 +6,10 @@
 #define TESTPROJECT_ITEM_H
 
 #include "iostream"
-#include "../enumerations/RentalType.cpp"
-#include "../enumerations/LoanType.cpp"
-#include "../enumerations/RentalStatusType.cpp"
-#include "../enumerations/GenreType.cpp"
-#include "../enumerations/AccountType.cpp"
-#include "../utils/StringType.cpp"
+#include "Model.h"
 
 
-using namespace std;
-using namespace string_conversion;
-
-class Item {
+class Item : public Model{
 private:
     string id_;
     string title_;

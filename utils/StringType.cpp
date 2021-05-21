@@ -4,6 +4,11 @@
 
 
 #include <sstream>
+#include "../enumerations/AccountType.cpp"
+#include "../enumerations/GenreType.cpp"
+#include "../enumerations/LoanType.cpp"
+#include "../enumerations/RentalStatusType.cpp"
+#include "../enumerations/RentalType.cpp"
 
 using namespace std;
 

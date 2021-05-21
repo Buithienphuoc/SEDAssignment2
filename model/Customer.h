@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Customer {
+class Customer : public Model {
 private:
     string id_;
     string name_;
