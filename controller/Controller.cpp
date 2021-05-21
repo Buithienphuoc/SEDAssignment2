@@ -202,6 +202,9 @@ void Controller::displayAllCustomer() {
 // 9. Display group of customers
 void Controller::displayGroupOfCustomer(){
     string stringAccountType;
+    cout << "Which group do you want to see ( Guest, Regular, Vip, default = Guest):" ;
+    cin >> stringAccountType;
+    cout << endl;
     AccountType inputAccountType = convertStringToAccountType(stringAccountType);
     service.showCustomersByGroup(inputAccountType);
 }
