@@ -27,6 +27,7 @@ protected:
     void searchCustomerById();
     void searchItemByTitle();
     void searchCustomerByName();
+    void receiveNewStock();
 
 public:
     void showMenu();

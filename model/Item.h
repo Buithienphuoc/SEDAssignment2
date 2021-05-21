@@ -156,7 +156,7 @@ public:
     string printRentalStatus() const {
         switch (rentalStatus_) {
             case BORROWED:
-                return "record";
+                return "borrowed";
             case AVAILABLE:
                 return "available";
         }

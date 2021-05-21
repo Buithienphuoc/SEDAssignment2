@@ -25,7 +25,7 @@ Customer CustomerDAO::findCustomerById(string id) {
         for (int customerPosition = 1; customerPosition <= customerList.size(); customerPosition++) {
             Customer targetCustomer = customerList.getIndex(customerPosition);
             string targetString = toUpperCase(targetCustomer.getId());
-            if (targetString == id) {
+            if (targetString == toUpperCase(id)) {
                 return targetCustomer;
             }
         }
