@@ -285,3 +285,11 @@ void Service::loadCustomerFile() {
         }
     }
 }
+
+void Service::saveItem() {
+    itemDao.save();
+}
+
+void Service::saveCustomer() {
+    customerDao.save();
+}

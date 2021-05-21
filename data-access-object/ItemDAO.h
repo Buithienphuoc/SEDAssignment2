@@ -16,6 +16,8 @@ class ItemDAO {
 private:
     LinkedList<Item> itemList;
 public:
+    const LinkedList<Item> &getItemList() const;
+
     ItemDAO();
     void addNewItem(Item item);
     void showAllItem();
@@ -30,6 +32,7 @@ public:
     void swap(Item item1, Item item2);
     void sortById();
     void sortByTitle();
+    void save();
 };
 
 

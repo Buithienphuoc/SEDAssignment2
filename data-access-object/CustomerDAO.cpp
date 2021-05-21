@@ -2,6 +2,7 @@
 // Created by phuoc on 10/05/2021.
 //
 
+#include <fstream>
 #include "CustomerDAO.h"
 
 CustomerDAO::CustomerDAO() {}
@@ -159,5 +160,43 @@ int CustomerDAO::getNumberOfRentals(string customerId) {
     Customer targetCustomer = findCustomerById(customerId);
     int numberOfRentals = targetCustomer.getNumberOfRentals();
     return numberOfRentals;
+}
+
+void CustomerDAO::save() {
+    ofstream file("database/customers.txt");
+    string fileContent;
+    for ( int i = 1; i <= customerList.size();i++){
+        Customer customer = customerList.getIndex(i);
+        cout << "Save customer with id=" << customer.getId() << endl;
+        if (customer.getListOfRentals().size() == 0){
+            fileContent += customer.getId()
+                    +","+customer.getName()
+                    +","+customer.getAddress()
+                    +","+customer.getPhone()
+                    +","+to_string(customer.getNumberOfRentals())
+                    +","+customer.printAccountType();
+        }
+        else {
+            fileContent += customer.getId()
+                           +","+customer.getName()
+                           +","+customer.getAddress()
+                           +","+customer.getPhone()
+                           +","+to_string(customer.getNumberOfRentals())
+                           +","+customer.printAccountType() +"\n";
+            for (int j = 1; j <= customer.getListOfRentals().size();j++){
+                cout << "Save item with id=" << customer.getListOfRentals().getIndex(j).getId()
+                << " to the customer with id=" << customer.getId() << endl;
+                fileContent += customer.getListOfRentals().getIndex(j).getId();
+                if (j != customer.getListOfRentals().size()){
+                    fileContent += "\n";
+                }
+            }
+        }
+        if (i != customerList.size()){
+            fileContent += "\n";
+        }
+    }
+    file << fileContent;
+    file.close();
 }
 
