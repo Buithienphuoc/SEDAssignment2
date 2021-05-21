@@ -67,7 +67,7 @@ void Controller::workWithChoice() {
 // 1. Add a new item, update or delete an existing item
 void Controller::addUpdateDeleteItem() {
     bool isRunning = true;
-    string userChoice = "0";
+    string userChoice;
     while (isRunning) {
         cout << " 1.Add item \n"
                 " 2.Update item \n"
@@ -96,7 +96,7 @@ void Controller::addUpdateDeleteItem() {
 // 2. Add new customer or update an existing customer
 void Controller::addUpdateDeleteCustomer() {
     bool isRunning = true;
-    string userChoice = "0";
+    string userChoice;
     while (isRunning) {
         cout << " 1.Add customer \n"
                 " 2.Update customer \n"
@@ -233,7 +233,7 @@ void Controller::searchItemOrCustomer() {
             searchCustomerById();
         } else if (choice == "4") {
             searchCustomerByName();
-        } else if (toLowerCase(choice) == "exit" or  toLowerCase(choice) == "return") {
+        } else if (toLowerCase(choice) == "back" or  toLowerCase(choice) == "return") {
             isRunning = false;
         } else {
             cout << "Please type again..." << endl;
@@ -262,14 +262,15 @@ Customer Controller::getCustomerInput() {
     string inputAddress;
     string inputPhone;
     string stringAccountType;
+    getline(cin, inputId);
     cout << "Type customer id:";
-    cin >> inputId;
+    getline(cin, inputId);
     cout << endl;
     cout << "Type customer name:";
-    cin >> inputName;
+    getline(cin, inputName);
     cout << endl;
     cout << "Type customer address:";
-    cin >> inputAddress;
+    getline(cin, inputAddress);
     cout << endl;
     cout << "Type customer phone:";
     cin >> inputPhone;
@@ -277,9 +278,11 @@ Customer Controller::getCustomerInput() {
     cout << "Type customer account type ( guess, regular, vip, default = guess):";
     cin >> stringAccountType;
     cout << endl;
-
+    inputId = toUpperCase(inputId);
     AccountType inputAccountType = convertStringToAccountType(stringAccountType);
-    return Customer(inputId, inputName, inputAddress, inputPhone, inputAccountType);
+    Customer customer(inputId, inputName, inputAddress, inputPhone, inputAccountType);
+    customer.setNumberOfRentals(0);
+    return customer;
 }
 
 Item Controller::getItemInput() {
@@ -294,11 +297,12 @@ Item Controller::getItemInput() {
     LoanType inputLoanType;
     string stringLoanType;
 
+    getline(cin,inputId);
     cout << "Type new Id:";
-    cin >> inputId;
+    getline(cin,inputId);
     cout << endl;
     cout << "Type new Title:";
-    cin >> inputTitle;
+    getline(cin,inputTitle);
     cout << endl;
     cout << "Type new Number Of Copies:";
     cin >> inputNumberOfCopies;
@@ -317,6 +321,9 @@ Item Controller::getItemInput() {
     inputLoanType = convertStringToLoanType(stringLoanType);
     // check rental type:
     inputRentalType = convertStringToRentalType(stringRentalType);
+
+    // id to upper case:
+    inputId = toUpperCase(inputId);
 
     if (inputRentalType == GAME) {
         return Item(inputId, inputTitle, inputRentalType, inputLoanType, inputNumberOfCopies, inputRentalFee);
@@ -395,20 +402,22 @@ void Controller::searchCustomerById() {
     service.showCustomerById(id);
 }
 
-void Controller::searchItemByTitle() {
+void Controller::searchItemByTitle(){
     string title;
+    getline(cin,title);
     cout << "Type the item id to search:";
-    cin >> title;
+    getline(cin,title);
     cout << endl;
     service.showItemByTitle(title);
 }
 
 void Controller::searchCustomerByName() {
-    string id;
+    string name;
+    getline(cin, name);
     cout << "Type the item id to search:";
-    cin >> id;
+    getline(cin, name);
     cout << endl;
-    service.showItemById(id);
+    service.showCustomersByName(name);
 }
 
 void Controller::receiveNewStock() {

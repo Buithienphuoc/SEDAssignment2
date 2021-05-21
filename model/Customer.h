@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Customer {
+class Customer : public Model {
 private:
     string id_;
     string name_;
@@ -93,6 +93,10 @@ public:
 
     void setVipPoint(int point) {
         Customer::vipPoint = point;
+    }
+
+    void setNumberOfRentals(int rentals) {
+        Customer::numberOfRentals = rentals;
     }
     // Compare operators:
 
