@@ -264,8 +264,12 @@ Customer Controller::getCustomerInput() {
     string inputPhone;
     string stringAccountType;
     getline(cin, inputId);
-    cout << "Type customer id:";
+    cout << "Type customer id ( format : CXXX ; XXX are 3 digits ):";
     getline(cin, inputId);
+    while (!isCustomerIdFormat(inputId)){
+        cout << "Wrong id format, please type again:";
+        getline(cin,inputId);
+    }
     cout << endl;
     cout << "Type customer name:";
     getline(cin, inputName);
@@ -299,8 +303,12 @@ Item Controller::getItemInput() {
     string stringLoanType;
 
     getline(cin,inputId);
-    cout << "Type new Id:";
+    cout << "Type new Id (IXXX-YYYY ; XXX are 3 digits, YYYY is year for example: 2019 ):";
     getline(cin,inputId);
+    while (!isItemIdFormat(inputId)){
+        cout << "Wrong id format, please type again:";
+        getline(cin,inputId);
+    }
     cout << endl;
     cout << "Type new Title:";
     getline(cin,inputTitle);
