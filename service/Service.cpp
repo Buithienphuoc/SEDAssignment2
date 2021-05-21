@@ -228,7 +228,7 @@ void Service::loadItemFile() {
                 cout << "price=" << itemInfoList.getIndex(6) << endl;
                 rentalFee = stof(itemInfoList.getIndex(6));
                 cout << "genre=" << itemInfoList.getIndex(7);
-                genre = convertStringToGenreType(itemInfoList.getIndex(7));
+                genre = convertStringToGenreType(trim(itemInfoList.getIndex(7)));
                 Item item(id,title,rentalType,loan,numberOfCopies,rentalFee,genre);
                 add(item);
                 cout << endl;
@@ -258,7 +258,7 @@ void Service::loadCustomerFile() {
             if (customerObjectString[0] == 'I'){
                 cout << "Add item " << customerObjectString << endl;
                 cout << "for customer with id=" << customerId << endl;
-                addItemForCustomer(customerId,customerObjectString);
+                addItemForCustomer(customerId,trim(customerObjectString));
                 cout << endl;
                 customerDao.findCustomerById(customerId).getListOfRentals().print();
             }
@@ -276,8 +276,8 @@ void Service::loadCustomerFile() {
                 customerPhone = customerInfoList.getIndex(4);
                 cout << "Number of rentals:" << customerInfoList.getIndex(5) << endl;
                 numberOfRentals = stoi(customerInfoList.getIndex(5));
-                cout << "Customer account type:" << customerInfoList.getIndex(6) << endl;
-                accountType = convertStringToAccountType(customerInfoList.getIndex(6));
+                cout << "Customer account type:" << trim(customerInfoList.getIndex(6)) << endl;
+                accountType = convertStringToAccountType(trim(customerInfoList.getIndex(6)));
                 Customer customer(customerId,customerName,customerAddress,customerPhone,numberOfRentals,accountType);
                 add(customer);
                 cout << endl;
