@@ -1,6 +1,7 @@
 //
 // Created by phuoc on 08/05/2021.
 //
+#include <fstream>
 #include "ItemDAO.h"
 
 ItemDAO::ItemDAO() {
@@ -131,4 +132,40 @@ void ItemDAO::sortByTitle() {
                 swap(itemList.getIndex(j), itemList.getIndex(j+1));
             }
     }
+}
+
+const LinkedList<Item> &ItemDAO::getItemList() const {
+    return itemList;
+}
+
+void ItemDAO::save() {
+    ofstream file("database/items.txt");
+    string fileContent;
+    for (int index = 1; index <= itemList.size(); index++) {
+        Item item = itemList.getIndex(index);
+        cout << "Save item with id=" << item.getId() << endl;
+        if (item.getRentalType() == GAME) {
+            cout << "File content" << fileContent;
+            fileContent += item.getId()
+                           + "," + item.getTitle()
+                           + "," + item.printRentalType()
+                           + "," + item.printLoanType()
+                           + "," + to_string(item.getNumberOfCopies())
+                           + "," + to_string(item.getRentalFee());
+        } else {
+            cout << "File content" << fileContent;
+            fileContent += item.getId()
+                           + "," + item.getTitle()
+                           + "," + item.printRentalType()
+                           + "," + item.printLoanType()
+                           + "," + to_string(item.getNumberOfCopies())
+                           + "," + to_string(item.getRentalFee())
+                           + "," + item.printGenreType();
+        }
+        if (index != itemList.size()){
+            fileContent += "\n";
+        }
+    }
+    file << fileContent;
+    file.close();
 }

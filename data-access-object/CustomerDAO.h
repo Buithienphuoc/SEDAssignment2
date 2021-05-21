@@ -27,6 +27,7 @@ public:
     void sortById();
     void sortByName();
     int getNumberOfRentals(string customerId);
+    void save();
 };
 
 

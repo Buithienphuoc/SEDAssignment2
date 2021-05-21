@@ -59,6 +59,8 @@ public:
     void loadDatabase();
     void loadItemFile();
     void loadCustomerFile();
+    void saveItem();
+    void saveCustomer();
 };
 
 

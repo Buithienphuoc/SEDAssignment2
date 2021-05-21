@@ -239,12 +239,13 @@ void Controller::searchItemOrCustomer() {
             cout << "Please type again..." << endl;
         }
     }
-
 }
 
 // 11. Save changes and exit:
-void Controller::saveAndExit() {
-    cout << "Saving data...";
+void Controller::saveAndExit(){
+    cout << "Saving data..." << endl;
+    service.saveItem();
+    service.saveCustomer();
 }
 
 // Main program:
